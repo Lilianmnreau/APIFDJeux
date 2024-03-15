@@ -37,9 +37,11 @@ const login = async (req, res) => {
 
     if (!isMatching) throw new Error('Invalid password');
 
-    const token = jwt.sign({ id: user.idUser , admin : user.role === 'admin'}, process.env.JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ idUser: user.idUser , admin : user.role === 'admin'}, process.env.JWT_SECRET, { expiresIn: '24h' });
 
-    res.send({ id: user.idUser, accessToken: token });
+    res.send({ idUser: user.idUser.toString(), accessToken: token });
+    console.log({ idUser: user.idUser.toString(), accessToken: token })
+
   } catch (error) {
     console.log(error);
     res.status(400).send({ errors: error.message });
@@ -105,7 +107,7 @@ const addFestivalToUser = async (req, res) => {
     // Sauvegarder les modifications
     await user.save();
 
-    return res.status(200).json({ success: true, user });
+    return res.status(200).json({ success: true});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Erreur serveur' });

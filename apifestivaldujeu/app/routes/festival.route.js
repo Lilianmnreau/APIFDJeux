@@ -6,7 +6,7 @@ module.exports = app => {
     
     router.get('/', isLoggedIn, controller.getAllFestivals);
 
-    router.get('/enCours', isLoggedIn, controller.getFestivalByEnCours);
+    router.get('/enCours',  controller.getFestivalByEnCours);
     
     router.post('/', isLoggedIn, controller.createFestival);
     

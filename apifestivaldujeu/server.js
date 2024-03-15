@@ -8,14 +8,8 @@ const bodyParser = require('body-parser');
 
 const init = require('./init');
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://festival-jeu-mtp.onrender.com',
-];
+app.use(cors()); // Activer CORS pour toutes les origines
 
-app.use(cors({
-  origin: allowedOrigins
-}));
 app.use(express.json({ limit: '10mb' })); // Utiliser express.json() avec la limite de taille
 app.use(express.urlencoded({ extended: true, limit: '10mb' })); // Utiliser express.urlencoded() avec la limite de taille
 

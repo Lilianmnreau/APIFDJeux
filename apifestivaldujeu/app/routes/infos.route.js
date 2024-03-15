@@ -6,7 +6,7 @@ const { isLoggedIn, isAdmin } = require('../middleware/auth');
 module.exports = app => {
   router.post('/', isLoggedIn, infosController.createInfo);
   
-  router.get('/',  isLoggedIn, infosController.getAllInfos);
+  router.get('/',   infosController.getAllInfos);
 
   router.get('/:id', isLoggedIn, infosController.getInfoById);
 

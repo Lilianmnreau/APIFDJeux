@@ -7,7 +7,7 @@ module.exports = app => {
 
   router.get('/', isLoggedIn, newsController.getAllNews);
 
-  router.get('/fav', isLoggedIn, newsController.getFavoriteNews)
+  router.get('/fav', newsController.getFavoriteNews)
 
   router.post('/',  isLoggedIn, newsController.createNews);
 
