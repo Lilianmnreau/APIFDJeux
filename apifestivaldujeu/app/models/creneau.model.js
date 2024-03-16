@@ -26,7 +26,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     date :{
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
     },
     ouvert: {
       type: Sequelize.BOOLEAN,
