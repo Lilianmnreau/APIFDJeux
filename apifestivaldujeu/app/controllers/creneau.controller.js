@@ -31,6 +31,7 @@ const getbyDate = async (req, res) => {
             },
         });
         if (!creneau) throw new Error('Creneau not found');
+        console.log({creneau: creneau[0], string: "ok", date: req.params.date })
         res.send(creneau);
     } catch (error) {
         console.log(error);
