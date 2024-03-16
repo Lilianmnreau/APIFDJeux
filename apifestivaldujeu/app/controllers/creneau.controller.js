@@ -23,6 +23,22 @@ const createCreneau = async (req, res) => {
     }
 };
 
+const getbyDate = async (req, res) => {
+    try {
+        const creneau = await Creneaux.findAll({
+            where: {
+                date: req.params.date,
+            },
+        });
+        if (!creneau) throw new Error('Creneau not found');
+        res.send(creneau);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({ errors: error.message });
+    }
+};
+
+
 const getbyJour = async (req, res) => {
     try {
         const creneau = await Creneaux.findAll({
@@ -281,5 +297,6 @@ const deleteById = async (req, res) => {
         deleteLigne,
         getbyJour,
         deleteByHoraireId,
-        deleteByJourId
+        deleteByJourId,
+        getbyDate
     }

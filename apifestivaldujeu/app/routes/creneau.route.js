@@ -26,6 +26,8 @@ module.exports = app => {
 
     router.get('/:JourId/:HoraireId/:LigneId', controller.getbyId);
 
+    router.get('/getbydate/:date', controller.getbyDate);
+
     router.delete('/deletebyligne/:idligne', controller.deleteLigne);
 
     router.delete('/deletebyhoraire/:id', controller.deleteByHoraireId)

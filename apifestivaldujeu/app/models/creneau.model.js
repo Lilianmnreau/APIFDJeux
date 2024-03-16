@@ -25,6 +25,9 @@ module.exports = (sequelize, Sequelize) => {
     idPlanning:{
       type: Sequelize.INTEGER,
     },
+    date :{
+      type: Sequelize.DATE,
+    },
     ouvert: {
       type: Sequelize.BOOLEAN,
     },
