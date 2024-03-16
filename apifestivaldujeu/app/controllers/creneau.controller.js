@@ -1,4 +1,6 @@
 const {Creneaux} = require('../models');
+const {CreneauBenevole} = require('../models');
+
 
 const createCreneau = async (req, res) => {
     try {
@@ -37,6 +39,38 @@ const getbyDate = async (req, res) => {
         res.status(400).send({ errors: error.message });
     }
 };
+
+const getbyDateandidUser = async (req, res) => {
+    try{
+        const creneauxbenevole = await CreneauBenevole.findAll({
+            where: {
+                idUser: req.params.idUser
+            }
+        });
+        if (!creneauxbenevole) throw new Error('Creneau not found');
+    }
+    catch(error){
+        console.log(error);
+        res.status(400).send({errors: error.message});
+    }
+  try{
+    for (let creneau of creneauxbenevole){
+        const creneaux = await Creneaux.findAll({
+            where: {
+                date: req.params.date,
+                idCreneau: creneau.idCreneau
+            }
+        });
+        if (!creneaux) throw new Error('Creneau not found');
+    }
+    }
+    catch(error){
+        console.log(error);
+        res.status(400).send({errors: error.message});
+    }
+    res.send(creneaux);
+};
+
 
 
 const getbyJour = async (req, res) => {
@@ -298,5 +332,6 @@ const deleteById = async (req, res) => {
         getbyJour,
         deleteByHoraireId,
         deleteByJourId,
-        getbyDate
+        getbyDate,
+        getbyDateandidUser
     }
