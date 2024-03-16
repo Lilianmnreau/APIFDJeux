@@ -41,7 +41,7 @@ const getbyDate = async (req, res) => {
     }
 };
 
-const getbyDateandidUser = async (req, res) => {
+const getbyDateAndIdUser = async (req, res) => {
     try{
         const creneauxbenevole = await CreneauBenevole.findAll({
             where: {
@@ -334,5 +334,5 @@ const deleteById = async (req, res) => {
         deleteByHoraireId,
         deleteByJourId,
         getbyDate,
-        getbyDateandidUser
+        getbyDateAndIdUser
     }
