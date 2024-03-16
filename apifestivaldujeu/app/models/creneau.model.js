@@ -32,10 +32,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
     },
     heure_debut: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
     },
     heure_fin: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
     },
     titre: {
       type: Sequelize.STRING,
