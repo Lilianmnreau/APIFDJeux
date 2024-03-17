@@ -10,6 +10,8 @@ module.exports = app => {
 
     router.get('/:CreneauId', isLoggedIn, controller.getbenevoles)
 
+    router.get('/isInscrit/:idUser/:idCreneau', controller.isInscrit)
+
     router.delete('/', controller.desinscription)
 
     router.get('/getbenevoles/:idCreneau',controller.getbenevoles)

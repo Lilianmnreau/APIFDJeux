@@ -52,6 +52,22 @@ const desinscription = async (req,res) => {
     }
 }
 
+const isInscrit = async (req,res) => {
+    try{
+        const creneau_benevole = await CreneauBenevole.findOne({
+            where: {
+                idUser: req.params.idUser,
+                idCreneau: req.params.idCreneau
+            }
+        });
+        res.send(creneau_benevole);
+    }
+    catch(error){
+        console.log(error);
+        res.status(400).send({errors: error.message});
+    }
+}
+
 
 const getbenevoles = async (req,res) => {
     try{
@@ -91,5 +107,6 @@ module.exports = {
     getbenevoles,
     getcreneaux,
     desinscription,
-    changeisPresent
+    changeisPresent,
+    isInscrit
 }
