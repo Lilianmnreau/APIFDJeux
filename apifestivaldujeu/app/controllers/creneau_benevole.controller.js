@@ -44,7 +44,11 @@ const desinscription = async (req,res) => {
                 idCreneau: idCreneau
             }
         });
-        res.send(creneau_benevole);
+        if (creneau_benevole) {
+            res.send(false)
+        } else {
+            res.send(true)
+        }
     }
     catch(error){
         console.log(error);
@@ -60,7 +64,11 @@ const isInscrit = async (req,res) => {
                 idCreneau: req.params.idCreneau
             }
         });
-        res.send(creneau_benevole);
+        if (creneau_benevole) {
+            res.send(true)
+        } else {
+            res.send(false)
+        }
     }
     catch(error){
         console.log(error);

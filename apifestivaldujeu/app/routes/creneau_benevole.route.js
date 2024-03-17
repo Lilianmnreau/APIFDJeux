@@ -4,7 +4,7 @@ const { isLoggedIn, isAdmin } = require('../middleware/auth');
 module.exports = app => {
     const router = require('express').Router();
 
-    router.post('/', isLoggedIn, controller.inscription)
+    router.post('/',  controller.inscription)
 
     router.put('/isPresent', controller.changeisPresent)
 

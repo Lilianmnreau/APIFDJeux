@@ -33,7 +33,6 @@ const getbyDate = async (req, res) => {
             },
         });
         if (!creneau) throw new Error('Creneau not found');
-        console.log({creneau: creneau[0], string: "ok", date: req.params.date })
         res.send(creneau);
     } catch (error) {
         console.log(error);
@@ -45,31 +44,29 @@ const getbyDateAndIdUser = async (req, res) => {
     try{
         const creneauxbenevole = await CreneauBenevole.findAll({
             where: {
-                idUser: req.params.idUser
+                idUser: req.params.iduser
             }
         });
+        const listeCreneaux = []
         if (!creneauxbenevole) throw new Error('Creneau not found');
-    }
-    catch(error){
-        console.log(error);
-        res.status(400).send({errors: error.message});
-    }
-  try{
-    for (let creneau of creneauxbenevole){
-        const creneaux = await Creneaux.findAll({
-            where: {
-                date: req.params.date,
-                idCreneau: creneau.idCreneau
+        for (let creneau of creneauxbenevole){
+            const creneaux = await Creneaux.findOne({
+                where: {
+                    date: req.params.date,
+                    idCreneau: creneau.idCreneau
+                }
+            });
+            if (!creneaux) throw new Error('Creneau not found');
+            else {
+                listeCreneaux.push(creneaux)
             }
-        });
-        if (!creneaux) throw new Error('Creneau not found');
-    }
+        }
+        res.send(listeCreneaux)
     }
     catch(error){
         console.log(error);
         res.status(400).send({errors: error.message});
     }
-    res.send(creneaux);
 };
 
 
@@ -243,7 +240,7 @@ const deleteById = async (req, res) => {
                     },
                     });
                     if (!creneau) throw new Error('Creneau not found');
-                    await creneau.update({nb_inscrit:req.body.nb_inscrit});
+                    await creneau.update({nb_inscrit: creneau.nb_inscrit + 1});
                 res.send(creneau);
             }
             catch(error){
@@ -260,7 +257,7 @@ const deleteById = async (req, res) => {
                     },
                     });
                     if (!creneau) throw new Error('Creneau not found');
-                    await creneau.update({nb_inscrit:req.body.nb_inscrit});
+                    await creneau.update({nb_inscrit: creneau.nb_inscrit - 1});
                 res.send(creneau);
             }
             catch(error){

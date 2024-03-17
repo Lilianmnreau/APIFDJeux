@@ -24,7 +24,7 @@ module.exports = app => {
 
     router.get('/getbyid/:idCreneau',controller.getCreneauById)
 
-    router.get('/:JourId/:HoraireId/:LigneId', controller.getbyId);
+    router.get('/getBy/:JourId/:HoraireId/:LigneId', controller.getbyId);
 
     router.get('/getbydate/:date', controller.getbyDate);
 
