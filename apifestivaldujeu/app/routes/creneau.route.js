@@ -28,6 +28,8 @@ module.exports = app => {
 
     router.get('/getbydate/:date', controller.getbyDate);
 
+    router.get('/getbydateandhoraire/:date/:horaire_debut/:horaire_fin', controller.getbyDateAndHoraire);
+
     router.get('/getbydateandiduser/:date/:iduser', controller.getbyDateAndIdUser);
 
     router.delete('/deletebyligne/:idligne', controller.deleteLigne);
