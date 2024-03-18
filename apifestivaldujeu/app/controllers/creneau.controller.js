@@ -45,8 +45,8 @@ const getbyDateAndHoraire = async (req, res) => {
         const creneau = await Creneaux.findAll({
             where: {
                 date: req.params.date,
-                heure_debut: req.params.heure_debut,
-                heure_fin: req.params.heure_fin
+                heure_debut: req.params.horaire_debut,
+                heure_fin: req.params.horaire_fin
             },
         });
         if (!creneau) throw new Error('Creneau not found');

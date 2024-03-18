@@ -17,7 +17,7 @@ module.exports = app => {
   router.delete('/reponse/:id', isLoggedIn, qrController.deleteReponse);
 
   // Route pour récupérer toutes les questions avec réponses associées
-  router.get('/', isLoggedIn, qrController.getAllQuestionsWithReponses);
+  router.get('/',  qrController.getAllQuestionsWithReponses);
 
   app.use('/qr', router);
 };
