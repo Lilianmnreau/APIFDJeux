@@ -4,11 +4,11 @@ const { isLoggedIn } = require('../middleware/auth');
 module.exports = app => {
   const router = require('express').Router();
 
-  router.get('/get', isLoggedIn, csvController.getCsv);
+  router.get('/get', csvController.getCsv);
 
-  router.get('/getallespace',isLoggedIn, csvController.getAllEspace);
+  router.get('/getallespace', csvController.getAllEspace);
 
-  router.get('/getjeu/:planZone',isLoggedIn, csvController.getJeuByEspace)
+  router.get('/getjeu/:planZone', csvController.getJeuByEspace)
 
   router.post('/post', isLoggedIn, csvController.importCsv);
 

@@ -17,7 +17,11 @@ module.exports = (sequelize,Sequelize) => {
         },
         isPresent:{
             type: Sequelize.INTEGER
+        },
+        flexible:{
+            type: Sequelize.INTEGER
         }
+
     })
 
     return CreneauBenevole

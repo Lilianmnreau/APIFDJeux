@@ -89,6 +89,7 @@ const getCsv = async (req, res) => {
 
 const getJeuByEspace = async (req, res) => {
     const planZone = req.params.planZone;
+    console.log(planZone)
     try {
         const jeux = await Csv.findAll({
             where: { planZone: planZone }
@@ -112,5 +113,6 @@ const getAllEspace = async (req, res) => {
         res.status(500).json({ error: 'Erreur lors de la récupération des données' });
     }
 }
+
 
 module.exports = { importCsv, getCsv, getAllEspace,getJeuByEspace };

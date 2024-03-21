@@ -46,7 +46,13 @@ module.exports = (sequelize, Sequelize) => {
     nb_inscrit: {
       type: Sequelize.INTEGER
     },
+    nb_inscrit_flexible: {
+      type: Sequelize.INTEGER
+    },
     ReferentId: {
+      type: Sequelize.INTEGER,
+    },
+    isAnimation: {
       type: Sequelize.INTEGER,
     },
   }, {timestamps: false});

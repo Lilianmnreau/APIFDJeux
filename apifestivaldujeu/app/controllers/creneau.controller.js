@@ -26,10 +26,12 @@ const createCreneau = async (req, res) => {
 };
 
 const getbyDate = async (req, res) => {
+    const isAnimation = req.params.isAnimation
     try {
         const creneau = await Creneaux.findAll({
             where: {
                 date: req.params.date,
+                isAnimation: isAnimation,
             },
         });
         if (!creneau) throw new Error('Creneau not found');
@@ -46,7 +48,8 @@ const getbyDateAndHoraire = async (req, res) => {
             where: {
                 date: req.params.date,
                 heure_debut: req.params.horaire_debut,
-                heure_fin: req.params.horaire_fin
+                heure_fin: req.params.horaire_fin,
+                isAnimation: req.params.isAnimation
             },
         });
         if (!creneau) throw new Error('Creneau not found');
@@ -267,6 +270,23 @@ const deleteById = async (req, res) => {
             }
         }
 
+        const addnbinscritflexible = async (req,res) => {
+            try{
+                const creneau = await Creneaux.findOne({
+                    where: {
+                        idCreneau: req.params.idCreneau,
+                    },
+                    });
+                    if (!creneau) throw new Error('Creneau not found');
+                    await creneau.update({nb_inscrit_flexible: creneau.nb_inscrit_flexible + 1});
+                res.send(creneau);
+            }
+            catch(error){
+                console.log(error);
+                res.status(400).send({errors: error.message});
+            }
+        }
+
         const subtractnbinscrit = async (req,res) => {
             try{
                 const creneau = await Creneaux.findOne({
@@ -276,6 +296,23 @@ const deleteById = async (req, res) => {
                     });
                     if (!creneau) throw new Error('Creneau not found');
                     await creneau.update({nb_inscrit: creneau.nb_inscrit - 1});
+                res.send(creneau);
+            }
+            catch(error){
+                console.log(error);
+                res.status(400).send({errors: error.message});
+            }
+        }
+
+        const subtractnbinscritflexible = async (req,res) => {
+            try{
+                const creneau = await Creneaux.findOne({
+                    where: {
+                        idCreneau: req.params.idCreneau,
+                    },
+                    });
+                    if (!creneau) throw new Error('Creneau not found');
+                    await creneau.update({nb_inscrit_flexible: creneau.nb_inscrit_flexible - 1});
                 res.send(creneau);
             }
             catch(error){
@@ -342,7 +379,9 @@ const deleteById = async (req, res) => {
         createCreneau,
         getbyId,
         addnbinscrit,
+        addnbinscritflexible,
         subtractnbinscrit,
+        subtractnbinscritflexible,
         getCreneauById,
         deleteLigne,
         getbyJour,

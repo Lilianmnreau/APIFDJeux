@@ -12,9 +12,13 @@ module.exports = app => {
 
     router.put('/addnbinscrit/:idCreneau',controller.addnbinscrit)
 
+    router.put('/addnbinscritflexible/:idCreneau',controller.addnbinscrit)
+
     router.put('/modifyreferent/:idCreneau',controller.modifyReferent)
 
     router.put('/subnbinscrit/:idCreneau',controller.subtractnbinscrit)
+
+    router.put('/subnbinscritflexible/:idCreneau',controller.subtractnbinscrit)
 
     router.put('/modifynbmax/:idCreneau',controller.modifyNbMax)
 
@@ -26,9 +30,9 @@ module.exports = app => {
 
     router.get('/getBy/:JourId/:HoraireId/:LigneId', controller.getbyId);
 
-    router.get('/getbydate/:date', controller.getbyDate);
+    router.get('/getbydate/:date/:isAnimation', controller.getbyDate);
 
-    router.get('/getbydateandhoraire/:date/:horaire_debut/:horaire_fin', controller.getbyDateAndHoraire);
+    router.get('/getbydateandhoraire/:date/:horaire_debut/:horaire_fin/:isAnimation', controller.getbyDateAndHoraire);
 
     router.get('/getbydateandiduser/:date/:iduser', controller.getbyDateAndIdUser);
 

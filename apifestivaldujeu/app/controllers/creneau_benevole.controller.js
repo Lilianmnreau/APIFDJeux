@@ -2,11 +2,12 @@ const {CreneauBenevole} = require('../models');
 
 const inscription = async (req,res) => {
     try{
-        const {idCreneau,idUser} = req.body;
+        const {idCreneau,idUser, flexible} = req.body;
         const creneau_benevole = await CreneauBenevole.create({
             idUser: idUser,
             idCreneau: idCreneau,
-            isPresent: 0
+            isPresent: 0,
+            flexible: flexible
         });
         res.send(creneau_benevole);
     }
@@ -64,10 +65,13 @@ const isInscrit = async (req,res) => {
                 idCreneau: req.params.idCreneau
             }
         });
-        if (creneau_benevole) {
-            res.send(true)
-        } else {
-            res.send(false)
+        if (!creneau_benevole) {
+            res.send("non")
+        }
+        else if (creneau_benevole.flexible == 0) {
+            res.send("oui")
+        } else if (creneau_benevole.flexible == 1){
+            res.send("flexible")
         }
     }
     catch(error){

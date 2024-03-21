@@ -18,7 +18,7 @@ const createQuestion = async (req, res) => {
 const addReponsesToQuestion = async (req, res) => {
   try {
     const { id } = req.params; // Assurez-vous que votre route contient un paramètre "id"
-    const nouvelleReponse = req.body; // Le corps de la requête contient la nouvelle réponse
+    const {reponse, createur} = req.body; // Le corps de la requête contient la nouvelle réponse
 
     // Vérifier si la question existe
     const existingQuestion = await Question.findByPk(id);
@@ -28,7 +28,8 @@ const addReponsesToQuestion = async (req, res) => {
 
     // Créer la nouvelle réponse associée à la question
     const nouvelleReponseCreee = await Reponse.create({
-      ...nouvelleReponse,
+      createur: createur,
+      reponse: reponse,
       questionId: id,
     });
 
@@ -95,7 +96,6 @@ const getAllQuestionsWithReponses = async (req, res) => {
     const questionsWithReponses = await Question.findAll({
       include: [{ model: Reponse, as: 'idReponse' }],
     });
-    console.log(questionsWithReponses);
     res.status(200).json(questionsWithReponses);
   } catch (error) {
     console.error(error);
